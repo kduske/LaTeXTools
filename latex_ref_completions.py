@@ -88,6 +88,7 @@ def find_labels_in_files(rootdir, src, labels):
                 f.close()
 
     labels += re.findall(r'\\label\{([^{}]+)\}', src_content)
+    labels += re.findall(r'\\begin\{(?:definition|theorem|lemma|corollary|proof)\}\{[^}]*?\}\{([^}]*?)\}', src_content)
 
     # search through input tex files recursively
     for f in re.findall(r'\\(?:input|include)\{([^\{\}]+)\}', src_content):
@@ -179,6 +180,7 @@ def get_ref_completions(view, point, autocompleting=False):
     #    1) in case there are unsaved changes
     #    2) if this file is unnamed and unsaved, get_tex_root will fail
     view.find_all(r'\\label\{([^\{\}]+)\}', 0, '\\1', completions)
+    view.find_all(r'\\begin\{(?:definition|theorem|lemma|corollary|proof)\}\{[^}]*?\}\{([^}]*?)\}', 0, '\\1', completions)
 
     root = getTeXRoot.get_tex_root(view)
     if root:
