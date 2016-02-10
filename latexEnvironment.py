@@ -21,7 +21,7 @@ class latexenvCommand(sublime_plugin.TextCommand):
 			environment = expr.group(1)[::-1]
 			environment_region = sublime.Region(point-len(environment),point)
 			view.erase(edit, environment_region)
-			snippet = "\\\\begin{" + environment + "}\n$1\n\\\\end{" + environment + "}$0"
+			snippet = "\\\\begin{" + environment + "}\n\t$0\n\\\\end{" + environment + "}"
 			view.run_command("insert_snippet", {'contents' : snippet})
 		else:
 			sublime.status_message("LATEXTOOLS INTERNAL ERROR: could not find environment to expand")
