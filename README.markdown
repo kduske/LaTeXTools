@@ -1,6 +1,8 @@
 LaTeX Plugin for Sublime Text 2 and 3
 =====================================
 
+with modification for handling references to custom environments by Kristian Duske
+
 by Ian Bacher and Marciano Siniscalchi
 
 Marciano's blog:
